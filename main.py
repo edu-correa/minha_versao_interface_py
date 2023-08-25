@@ -48,11 +48,14 @@ class tela:
 
          self.bntInsert = Button(self.container5, text="Inserir",
          font=self.fonte, width=12)
-         self.bntInsert["command"] = self.consultarUser
+         self.bntInsert["command"] = self.consultarUser(self)
          self.bntInsert.pack (side=LEFT)
+         
 
     def consultarUser(self):
-        conectar()
+        banc = conectar()
+        banc.comando()
+        
         
 root = tki.Tk()
 tela(root)
