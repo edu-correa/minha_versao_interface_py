@@ -11,8 +11,8 @@ class conectar:
     def iniciar(self):
         conexao = ms.connect(
             host="localhost",
-            user="root",
-            password="220807",
+            user="aluno",
+            password="sptech",
             database="bd_conway",
             port=3306
         )

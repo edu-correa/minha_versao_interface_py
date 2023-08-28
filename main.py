@@ -75,7 +75,7 @@ class tela:
         self.globalBanc.email = self.txtemail.get()
         self.globalBanc.senha = self.txtsenha.get()
         
-        resposta = self.globalBanc.inserir()
+        resposta = self.globalBanc.consultar()
 
         self.lblmsg["text"] = resposta
         s(3)

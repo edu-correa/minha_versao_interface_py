@@ -10,7 +10,7 @@ class Insert(object):
         self.percCPU = 0
         self.banco = conectar.iniciar(self)
 
-    def inserir(self):
+    def consultar(self):
         bancovar = conectar.iniciar(self)
         self.banco = bancovar
         bancoexec = bancovar.cursor(buffered=True)
