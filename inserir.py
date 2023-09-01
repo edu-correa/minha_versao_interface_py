@@ -3,6 +3,10 @@ import math
 
 class Insert(object):
     def __init__(self, email = "", senha = "", percCPU = 0, memoria = 0, freq = 0):
+        self.idUsuario
+        self.idTotem
+        self.idEmpresa
+        self.idAeroporto
         self.email = email
         self.senha = senha
         self.freq = 0
@@ -15,8 +19,13 @@ class Insert(object):
         self.banco = bancovar
         bancoexec = bancovar.cursor(buffered=True)
         resultado = []
-        bancoexec.execute(f"SELECT * FROM usuario WHERE email = '{self.email}' and senha = '{self.senha}'")
+        bancoexec.execute(f"SELECT * FROM Funcionario JOIN Empresa ON fkEmpresa = idEmpresa JOIN Totem ON fkEmpresa = idEmpresa WHERE emailFunc = '{self.email}' AND senhaFunc = '{self.senha}'")
         for linha in bancoexec:
+          self.idUsuario = linha['idFuncinario']
+          self.idTotem = linha['idTotem']
+          self.idEmpresa = linha['idEmpresa']
+          self.idAeroporto = linha['idAeroporto ']
+          self.idUsuario = linha['emailFunc']
           for coisa in linha:
               resultado.append(coisa)
 

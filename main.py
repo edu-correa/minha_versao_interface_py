@@ -60,7 +60,7 @@ class tela:
          self.lblmsg["font"] = ("Verdana", "9", "italic")
          self.lblmsg.pack()
          
-         self.bntInsert = Button(self.container5, text="Inserir",
+         self.bntInsert = Button(self.container5, text="Consultar",
          font=self.fonte, width=12)
          self.bntInsert["command"] = self.consultarUser
          self.bntInsert.pack (side=LEFT)

@@ -13,7 +13,7 @@ class conectar:
             host="localhost",
             user="aluno",
             password="sptech",
-            database="bd_conway",
+            database="Airway",
             port=3306
         )
         return conexao  
