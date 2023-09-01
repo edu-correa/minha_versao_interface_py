@@ -3,10 +3,10 @@ import math
 
 class Insert(object):
     def __init__(self, email = "", senha = "", percCPU = 0, memoria = 0, freq = 0):
-        self.idUsuario
-        self.idTotem
-        self.idEmpresa
-        self.idAeroporto
+        self.idUsuario = ''
+        self.idTotem = ''
+        self.idEmpresa = ''
+        self.idAeroporto = ''
         self.email = email
         self.senha = senha
         self.freq = 0
@@ -19,13 +19,13 @@ class Insert(object):
         self.banco = bancovar
         bancoexec = bancovar.cursor(buffered=True)
         resultado = []
-        bancoexec.execute(f"SELECT * FROM Funcionario JOIN Empresa ON fkEmpresa = idEmpresa JOIN Totem ON fkEmpresa = idEmpresa WHERE emailFunc = '{self.email}' AND senhaFunc = '{self.senha}'")
+        bancoexec.execute(f"SELECT idFuncionario, idTotem, fkEmpresa, fkAeroporto FROM Funcionario JOIN Empresa ON fkEmpresa = idEmpresa JOIN Totem ON fkEmpresa = idEmpresa WHERE emailFunc = '{self.email}' AND senhaFunc = '{self.senha}'")
         for linha in bancoexec:
-          self.idUsuario = linha['idFuncinario']
-          self.idTotem = linha['idTotem']
-          self.idEmpresa = linha['idEmpresa']
-          self.idAeroporto = linha['idAeroporto ']
-          self.idUsuario = linha['emailFunc']
+          print(linha)
+          self.idUsuario = linha[0]
+          self.idTotem = linha[1]
+          self.idEmpresa = linha[2]
+          self.idAeroporto = linha[3] 
           for coisa in linha:
               resultado.append(coisa)
 
@@ -43,12 +43,12 @@ class Insert(object):
         varPerc = "%"
         varMz = "Mhz"
       
-        addFreq = "INSERT INTO metrica (valor, tipoValor) VALUES (%s, %s)"
-        dataFreq = (float(self.freq), varMz)
-        addPerc = "INSERT INTO metrica (valor, tipoValor) VALUES (%s, %s)"
-        dataPerc = (float(self.percCPU), varPerc)
-        addMemory = "INSERT INTO metrica (valor, tipoValor) VALUES (%s, %s)"
-        dataMemory = (self.memoria, varPerc)
+        addFreq = "INSERT INTO Dados (valor, fkComponente, fkTotem, dataHoraDados) VALUES (%s, %s, %s, now())"
+        dataFreq = (float(self.freq), 1, self.idTotem)
+        addPerc = "INSERT INTO Dados (valor, fkComponente, fkTotem, dataHoraDados) VALUES (%s, %s, %s, now())"
+        dataPerc = (float(self.percCPU), 1, self.idTotem)
+        addMemory = "INSERT INTO Dados (valor, fkComponente, fkTotem, dataHoraDados) VALUES (%s, %s, %s, now())"
+        dataMemory = (self.memoria, 1, self.idTotem)
 
  
         execucao.execute(addFreq, dataFreq)
